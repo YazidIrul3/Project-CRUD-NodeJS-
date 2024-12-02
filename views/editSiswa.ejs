@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Form Tambah Siswa</title>
+  </head>
+  <body>
+    <%- include ("layouts/nav") %>
+    <div class="w-11/12 mx-auto">
+      <h1 class="font-bold text-blue-600 text-4xl mb-5">
+        Form Edit Data Siswa
+      </h1>
+      <form
+        action="/siswa/edit/<%= siswa.id %>?_method=PUT"
+        method="post"
+        class="w-6/12 p-7 bg-slate-50 shadow-black shadow-sm"
+      >
+        <div class="flex flex-col mt-4">
+          <label for="" class="mb-4 font-bold text-lg">Nama :</label>
+          <input
+            class="bg-slate-100 p-2 shadow-black shadow-sm outline-none"
+            type="text"
+            name="nama"
+            id=""
+            disabled
+            value="<%= siswa.nama %>"
+          />
+        </div>
+
+        <div class="flex flex-col mt-4">
+          <label for="" class="mb-4 font-bold text-lg">JK :</label>
+          <select name="jk" id="" disabled value="<%= siswa.jk %>">
+            <%= siswa.jk %>
+            <option value="L">L</option>
+            <option value="P">P</option>
+          </select>
+        </div>
+
+        <div class="flex flex-col mt-4">
+          <label for="" class="mb-4 font-bold text-lg">NISN :</label>
+          <input
+            class="bg-slate-100 p-2 shadow-black shadow-sm outline-none"
+            type="number"
+            name="nisn"
+            id=""
+            disabled
+            value="<%= siswa.nisn %>"
+          />
+        </div>
+
+        <div class="flex flex-col mt-4">
+          <label for="" class="mb-4 font-bold text-lg">NIK :</label>
+          <input
+            class="bg-slate-100 p-2 shadow-black shadow-sm outline-none"
+            type="number"
+            name="nik"
+            id=""
+            disabled
+            value="<%= siswa.nik %>"
+          />
+        </div>
+
+        <div class="flex flex-col mt-4">
+          <label for="" class="mb-4 font-bold text-lg">No.KK :</label>
+          <input
+            class="bg-slate-100 p-2 shadow-black shadow-sm outline-none"
+            type="number"
+            name="nokk"
+            id=""
+            disabled
+            value="<%= siswa.nokk %>"
+          />
+        </div>
+
+        <div class="flex flex-col mt-4">
+          <label for="" class="mb-4 font-bold text-lg">Rombel :</label>
+          <select name="rombel" id="" value="<%= siswa.rombel %>">
+            <%= siswa.rombel %>
+            <option value="PPLG 1">PPLG 1</option>
+            <option value="PPLG 2">PPLG 2</option>
+            <option value="RPL 1">RPL 1</option>
+            <option value="RPL 2">RPL 2</option>
+          </select>
+        </div>
+
+        <div class="flex flex-col mt-4">
+          <label for="" class="mb-4 font-bold text-lg"
+            >Tingkat Kelas Saat Ini :</label
+          >
+          <select name="tingkat" id="" value="<%= siswa.tingkat %>">
+            <%= siswa.tingkat %>
+            <option value="X">X</option>
+            <option value="XI">XI</option>
+            <option value="XII">XII</option>
+          </select>
+        </div>
+
+        <div class="flex flex-col mt-4">
+          <label for="" class="mb-4 font-bold text-lg">Tanggal Masuk :</label>
+          <input
+            class="bg-slate-100 p-2 shadow-black shadow-sm outline-none"
+            type="date"
+            name="tgl_masuk"
+            id=""
+            value=<%= siswa.tgl_masuk %>
+            max="<%= new Date().toISOString().split("T")[0] %>"
+
+          />
+        </div>        
+        <div class="flex flex-col mt-4">
+          <label for="" class="mb-4 font-bold text-lg">Terdaftar :</label>
+          <select name="terdaftar" id="">
+            <option value="Siswa baru">Siswa baru</option>
+            <option value="Pindahan">Pindahan</option>
+          </select>
+        </div>
+
+        <div class="flex flex-col mt-4">
+          <label for="" class="mb-4 font-bold text-lg">Tempat Lahir :</label>
+          <input
+            class="bg-slate-100 p-2 shadow-black shadow-sm outline-none"
+            type="text"
+            name="ttl"
+            id=""
+            disabled
+            value="<%= siswa.ttl %>"
+          />
+        </div>
+
+        <button
+          class="font-bold text-lg px-7 py-2 bg-blue-500 w-full mt-4 text-slate-50"
+        >
+          Edit
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "projecttugasnodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.7",
+    "ejs": "^3.1.10",
+    "ejs-lint": "^2.0.1",
+    "express": "^4.21.1",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.18.1",
+    "express-validator": "^7.2.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.8.2",
+    "nodemon": "^3.1.7"
+  }
+}
