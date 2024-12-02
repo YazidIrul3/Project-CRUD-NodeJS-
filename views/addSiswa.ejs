@@ -14,15 +14,21 @@
       </h1>
 
       <div class="mb-4">
-        <% if (msg == "NIK Already exist" || msg == "NISN Already exiet" || msg == "NIK and NISN Already exist") { %>
+        <% if (msg != "") { %>
         <div
           class="bg-red-400 py-3 text-white font-bold border border-green-400 text-green-700 px-4 py-3 rounded relative"
         >
-          <span class="block sm:inline py-3"><%= msg %></span>
+          <span class="block sm:inline py-3"><%=  errors %></span>
         </div>
-        <% } else { %>
-        <div></div>
-          <% } %>
+        <% } else if(errors != "") { %>
+          <div
+          class="bg-red-400 py-3 text-white font-bold border border-green-400 text-green-700 px-4 py-3 rounded relative"
+        >
+          <span class="block sm:inline py-3"><%= errors %></span>
+        </div>
+          <% } else { %>
+              <div></div>
+            <% } %>
 
       </div>
 
@@ -108,6 +114,7 @@
             name="tgl_masuk"
             id=""
             value=""
+            required
             max="<%= new Date().toISOString().split("T")[0] %>"
           />
         </div>

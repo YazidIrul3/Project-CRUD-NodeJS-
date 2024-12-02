@@ -11,7 +11,7 @@ router.get("", async (req, res) => {
     await res.render("login", {
       layout: "login",
       title: "Login",
-      msg: req.flash("msg"),
+      msg: req.flash("msg", ""),
     });
   } catch (error) {
     console.log(error.message);
@@ -38,7 +38,7 @@ router.get("/home", async (req, res) => {
 router.get("/siswa/json", async (req, res) => {
   const siswa = await Siswa.find();
 
-  siswa.map((s) => s.tgl_masuk)
+  siswa.map((s) => s.tgl_masuk);
 
   res.status(200).json({
     data: siswa,
@@ -72,10 +72,16 @@ router.get("/siswa/add", async (req, res) => {
       title: "add Siswa",
       layout: "addSiswa",
       name: req.session.name,
-      msg: req.flash("msg"),
+      msg: req.flash("msg", ""),
+      errors: "",
     });
   } catch (error) {
-    res.send(error.message);
+    await res.render("addSiswa", {
+      title: "add Siswa",
+      layout: "addSiswa",
+      name: req.session.name,
+      msg: req.flash("msg", error),
+    });
   }
 });
 
@@ -108,7 +114,6 @@ router.post("/siswa", async (req, res) => {
       const siswa = new Siswa(req.body);
       await siswa.save(); // Save to the database
       req.flash("msg", "Siswa Added");
-
       res.redirect("/siswa");
     }
   } catch (error) {
@@ -120,7 +125,7 @@ router.post("/siswa", async (req, res) => {
       title: "add Siswa",
       layout: "addSiswa",
       name: req.session.name,
-      // msg: req.flash("msg", "Siswa Added"),
+      msg: req.flash("msg", error.message),
       errors: error.message,
     });
   }
