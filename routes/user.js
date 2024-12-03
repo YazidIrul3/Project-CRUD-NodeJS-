@@ -28,4 +28,18 @@ routerUser.post("/siswa/login", async (req, res) => {
   }
 });
 
+routerUser.post("/siswa/logout", async (req, res) => {
+  try {
+   await req.session.destroy();
+   await res.redirect("/");
+  } catch (error) {
+    res.render("login", {
+      title: "login",
+      layout: "login",
+      msg: req.flash("msg", error.message),
+      errors: error.message,
+    });
+  }
+});
+
 module.exports = routerUser;

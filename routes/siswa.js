@@ -146,6 +146,7 @@ router.get("/siswa/edit/:id", async (req, res) => {
       siswa: siswa,
       title: "edit siswa",
       layout: "editSiswa",
+      tgl_masuk: siswa.tgl_masuk.toISOString().split("T")[0],
       name: req.session.name,
     });
   } catch (error) {

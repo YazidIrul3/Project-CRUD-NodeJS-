@@ -101,11 +101,10 @@
           <label for="" class="mb-4 font-bold text-lg">Tanggal Masuk :</label>
           <input
             class="bg-slate-100 p-2 shadow-black shadow-sm outline-none"
-            type="text"
+            type="date"
             name="tgl_masuk"
             id=""   
-            disabled
-            value=<%= siswa.tgl_masuk.toISOString().split("T")[0] %>
+            value=<%= tgl_masuk %>
             max="<%= new Date().toISOString().split("T")[0] %>"
 
           />
