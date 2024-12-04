@@ -15,14 +15,18 @@ routerUser.post("/siswa/login", async (req, res) => {
       res.redirect("/home");
     } else {
       res.redirect("/");
-
+      res.render("login", {
+        title: "login",
+        layout: "login",
+        msg: req.flash("msg", "username or password is wrong"),
+      });
       throw new Error("username or password is wrong");
     }
   } catch (error) {
     res.render("login", {
       title: "login",
       layout: "login",
-      msg: req.flash("msg", error.message),
+      msg: req.flash("msg", "username or password is wrong"),
       errors: error.message,
     });
   }
@@ -30,8 +34,8 @@ routerUser.post("/siswa/login", async (req, res) => {
 
 routerUser.post("/siswa/logout", async (req, res) => {
   try {
-   await req.session.destroy();
-   await res.redirect("/");
+    await req.session.destroy();
+    await res.redirect("/");
   } catch (error) {
     res.render("login", {
       title: "login",

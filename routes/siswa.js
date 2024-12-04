@@ -4,26 +4,35 @@ const { body, check, validationResult } = require("express-validator");
 const methodOver = require("method-override");
 const Siswa = require("../models/siswa");
 const validation = require("../utils/helpers");
-const User = require("../models/user");
+const isAuth = require("../middleware/isAuth");
 
 router.get("", async (req, res) => {
   try {
+    if (!req.session.name) {
+      await res.render("login", {
+        layout: "login",
+        title: "Login",
+        msg: req.flash("msg", "username or password is wrong"),
+      });
+    }
+
     await res.render("login", {
       layout: "login",
       title: "Login",
       msg: req.flash("msg", ""),
     });
   } catch (error) {
-    console.log(error.message);
+    res.render("login", {
+      title: "login",
+      layout: "login",
+      msg: req.flash("msg", error.message),
+      errors: error.message,
+    });
   }
 });
 
-router.get("/home", async (req, res) => {
+router.get("/home", isAuth, async (req, res) => {
   try {
-    if (!req.session.name) {
-      res.redirect("/");
-    }
-
     await res.render("index", {
       layout: "index",
       title: "Home",
@@ -35,21 +44,9 @@ router.get("/home", async (req, res) => {
   }
 });
 
-router.get("/siswa/json", async (req, res) => {
-  const siswa = await Siswa.find();
-
-  siswa.map((s) => s.tgl_masuk);
-
-  res.status(200).json({
-    data: siswa,
-  });
-});
-
-router.get("/siswa", async (req, res) => {
+router.get("/siswa",isAuth, async (req, res) => {
   try {
-    if (!req.session.name) {
-      res.redirect("/");
-    }
+ 
     const siswa = await Siswa.find();
     res.render("Home", {
       siswa: siswa,
@@ -63,11 +60,8 @@ router.get("/siswa", async (req, res) => {
   }
 });
 
-router.get("/siswa/add", async (req, res) => {
+router.get("/siswa/add", isAuth, async (req, res) => {
   try {
-    if (!req.session.name) {
-      res.redirect("/");
-    }
     await res.render("addSiswa", {
       title: "add Siswa",
       layout: "addSiswa",
@@ -85,7 +79,7 @@ router.get("/siswa/add", async (req, res) => {
   }
 });
 
-router.post("/siswa", async (req, res) => {
+router.post("/siswa", isAuth, async (req, res) => {
   const errors = validationResult(req.body);
   try {
     const { nama, nisn, nik, nokk, ttl } = req.body;
@@ -131,12 +125,8 @@ router.post("/siswa", async (req, res) => {
   }
 });
 
-router.get("/siswa/edit/:id", async (req, res) => {
+router.get("/siswa/edit/:id", isAuth, async (req, res) => {
   try {
-    if (!req.params.id) {
-      return res.redirect("/siswa");
-    }
-
     if (!req.session.name) {
       res.redirect("/");
     }
@@ -169,7 +159,7 @@ router.get("siswa/:nama", async (req, res) => {
   }
 });
 
-router.delete("/siswa/:id", async (req, res) => {
+router.delete("/siswa/:id", isAuth, async (req, res) => {
   try {
     await Siswa.findByIdAndDelete(req.params.id); // Delete the user by ID
     req.flash("msg", "Siswa Deleted");
@@ -181,7 +171,7 @@ router.delete("/siswa/:id", async (req, res) => {
   }
 });
 
-router.put("/siswa/edit/:id", async (req, res) => {
+router.put("/siswa/edit/:id", isAuth, async (req, res) => {
   try {
     await Siswa.findByIdAndUpdate(req.params.id, req.body); // Delete the user by ID
     req.flash("msg", "Siswa Updated");
