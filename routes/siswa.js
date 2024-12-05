@@ -44,9 +44,8 @@ router.get("/home", isAuth, async (req, res) => {
   }
 });
 
-router.get("/siswa",isAuth, async (req, res) => {
+router.get("/siswa", isAuth, async (req, res) => {
   try {
- 
     const siswa = await Siswa.find();
     res.render("Home", {
       siswa: siswa,

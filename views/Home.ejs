@@ -9,7 +9,7 @@
   <body>
     <%- include ("layouts/nav") %>
 
-    <div class="container w-11/12 flex mx-auto justify-center flex-col">
+    <div class="container w-11/12 flex mx-auto justify-center flex-col ">
       <div class="flex justify-between items-center mb-8">
         <h1 class="font-bold text-2xl">Daftar Contact</h1>
         <a
@@ -31,58 +31,61 @@
         <% } %>
       </div>
 
-      <table class="text-sm">
-        <tr class="border border-black border-b-2">
-          <th class="border border-white p-2">No</th>
-          <th class="border border-white p-2">Nama</th>
-          <th class="border border-white p-2">JK</th>
-          <th class="border border-white p-2">NISN</th>
-          <th class="border border-white p-2">NIK</th>
-          <th class="border border-white p-2">No.KK</th>
-          <th class="border border-white p-2">Tingkat Kelas Saat ini</th>
-          <th class="border border-white p-2">Rombel</th>
-          <th class="border border-white p-2">Tgl Masuk</th>
-          <th class="border border-white p-2">Terdaftar Sebagai</th>
-          <th class="border border-white p-2">Tempat Lahir</th>
-          <th class="border border-white p-2">Aksi</th>
-        </tr>
+      <div class="overflow-x-auto w-screen">
 
-        <% siswa.forEach((siswa,i) => { %>
-        <tr class="border border-b-2">
-          <th class="border border-white p-2"><%= i + 1 %></th>
-          <th class="border border-white p-2"><%= siswa.nama %></th>
-          <th class="border border-white p-2"><%= siswa.jk %></th>
-          <th class="border border-white p-2"><%= siswa.nisn %></th>
-          <th class="border border-white p-2"><%= siswa.nik %></th>
-          <th class="border border-white p-2"><%= siswa.nokk %></th>
-          <th class="border border-white p-2"><%= siswa.tingkat %></th>
-          <th class="border border-white p-2"><%= siswa.rombel %></th>
-          <th class="border border-white p-2"><%= siswa.tgl_masuk.toISOString().split("T")[0] %></th>
-          <th class="border border-white p-2"><%= siswa.terdaftar %> </th>
-          <th class="border border-white p-2"><%= siswa.ttl %></th>
-
-          <th class="border border-white p-2 flex items-center gap-4">
-            <a
-              href="/siswa/edit/<%= siswa._id %>"
-              type="submit"
+        <table class="text-sm">
+          <tr class="border border-black border-b-2">
+            <th class="border border-white p-2">No</th>
+            <th class="border border-white p-2">Nama</th>
+            <th class="border border-white p-2">JK</th>
+            <th class="border border-white p-2">NISN</th>
+            <th class="border border-white p-2">NIK</th>
+            <th class="border border-white p-2">No.KK</th>
+            <th class="border border-white p-2">Tingkat Kelas Saat ini</th>
+            <th class="border border-white p-2">Rombel</th>
+            <th class="border border-white p-2">Tgl Masuk</th>
+            <th class="border border-white p-2">Terdaftar Sebagai</th>
+            <th class="border border-white p-2">Tempat Lahir</th>
+            <th class="border border-white p-2">Aksi</th>
+          </tr>
+          
+          <% siswa.forEach((siswa,i) => { %>
+            <tr class="border border-b-2">
+              <th class="border border-white p-2"><%= i + 1 %></th>
+              <th class="border border-white p-2"><%= siswa.nama %></th>
+              <th class="border border-white p-2"><%= siswa.jk %></th>
+              <th class="border border-white p-2"><%= siswa.nisn %></th>
+              <th class="border border-white p-2"><%= siswa.nik %></th>
+              <th class="border border-white p-2"><%= siswa.nokk %></th>
+              <th class="border border-white p-2"><%= siswa.tingkat %></th>
+              <th class="border border-white p-2"><%= siswa.rombel %></th>
+              <th class="border border-white p-2"><%= siswa.tgl_masuk.toISOString().split("T")[0] %></th>
+              <th class="border border-white p-2"><%= siswa.terdaftar %> </th>
+              <th class="border border-white p-2"><%= siswa.ttl %></th>
+              
+              <th class="border border-white p-2 flex items-center gap-4">
+                <a
+                href="/siswa/edit/<%= siswa._id %>"
+                type="submit"
               class="bg-green-500 text-white py-1 rounded-full px-5"
-            >
+              >
               edit
             </a>
             <form action="/siswa/<%= siswa._id %>?_method=DELETE" method="POST">
               <button
-                type="submit"
-                onclick="return confirm('apakah anda yakin?')"
-                class="bg-red-500 text-white py-1 rounded-full px-5"
+              type="submit"
+              onclick="return confirm('apakah anda yakin?')"
+              class="bg-red-500 text-white py-1 rounded-full px-5"
               >
-                hapus
-              </button>
-            </form>
-          </th>
-        </tr>
-
-        <% }); %>
+              hapus
+            </button>
+          </form>
+        </th>
+      </tr>
+      
+      <% }); %>
       </table>
+    </div>
     </div>
   </body>
 </html>

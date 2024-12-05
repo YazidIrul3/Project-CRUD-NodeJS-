@@ -26,7 +26,7 @@ app.use(
   })
 );
 app.use(flash());
-
+app.use(express.static('public'));
 app.use("/user", routerUser);
 app.use("/", router);
 

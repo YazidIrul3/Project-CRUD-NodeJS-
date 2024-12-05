@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Form Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
   </head>
   <body>
     <div
@@ -29,6 +30,8 @@
         method="post"
         class="w-[400px] p-7 bg-slate-50 shadow-black shadow-sm"
       >
+      <img class="mx-auto w-24 h-24" src="img/logo-rpl.png" alt="">
+
         <div class="flex flex-col mt-4">
           <label for="" class="mb-4 font-bold text-lg">Username :</label>
           <input
@@ -39,23 +42,45 @@
           />
         </div>
 
-        <div class="flex flex-col mt-4">
+        <div class="flex flex-col mt-4 relative">
           <label for="" class="mb-4 font-bold text-lg">Password :</label>
           <input
-            class="bg-slate-100 p-2 shadow-black shadow-sm outline-none"
+            class="bg-slate-100 p-2 shadow-black shadow-sm outline-none "
             type="password"
             name="password"
-            id=""
-          />
+            id="input_password"
+            />
+            <img id="eye" class="hidden w-4 h-4 absolute right-3 translate-y-1/2 top-12" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAA41JREFUSEvFlmfIjmEUx39mRmaEklFm+GCVERn5IpQvKCMlu1BS5hd7Z5SVkih7ZKQkKyO7kJmV7OyRzfXXuXTe2/28z/P68p566rmv61zXWf/zP1cRCkmKFJJdCmq4GNAGqAPUMKcfA/eAs8CPXAPJ1XB9YBLQG6iY4fKXwC5gDnA3mwPZDJcB5gKjAEWbi3wFFgDTAf1PlfwM1wb2A01ysZaicw7oEZx+nnY+k+HGwAmgcuLQN+CI/W7YnnS7AJ2A4gn9R0Bb4GHSeJrh6oC8remUBZolwDzgRYYMVAvgmgaMDGku6nSumfF3/lya4c1AX6f0FOgZ0nberelcQ/u+Cfxyex2B3UAlt7YUGJef4UbB6HWn8NG8vWJr7QJgJltay9raB+BwAN8M55zSewwoYToCmVrwSbw7GfH60AqDnOGxoc7L7Hto6N3VkLH3VY7+wBbTlyNT3V2zgSlphkta/crbprwTsgWo1sDpHFrqC9AsOHAbqAAIXDEzd4B6aYa7Aoech6sMKFo6DnRwe59Cm22z6PuEXi/l9rY6jOwxfMTtBuZUnrQNDhGucxcMDB5uBIRWASzKa6CVYyeBTF1QzhQ+A8qaMjUeWOjOCqT79O1rPAGY75S6AwcAAeqkW19pTOZBujb06hC3oHRfNYrd6daFbCE8j+FM3rVMtJIANsJbBdaEegp8UVoAlyzNSncU2VicNNwv9OYmpzTcLhRINAAiV78BmgP3TVd1U6ojKL8bsIQDkckKd6f4QRjIE7HGnZAbZYNrrYMh3d3cnnpX4JIzSXDtBXqZrgJRQFHUHX+IyNdY/0XoVUxLUWrmCiSKUFFlm1AiCumKJtVGaidlTPLM7vvDckkCUf2GpdXEapiNQAYAolyJeFujMcpyYEz8SBpWg4t7I8mLMoXqy3agvbGPJlFpW3tv/T8zpPiiralsokyRkkSsVtdPqbQhod4V9UVRD6tmSnUUOSZeF5BuuXX97QxsT4zUfzohzXBV4Ix5GO9UnRfZy+JVwlD8FB40QEYnSqiho6Hx1p/L9BAQG51KeQiIizWJjlpJdF4vFNGtxmESfHoIqlQPks7m9/TRGFNrNM0QYbblC0Ygf0dhLhFHHbWEQCM0+ldFfkbVUnogzvrfx56/XECaaNwbGSppXH2/IyBZc/ef1BYk1WlR6TEnoNRKPOg1a4X6n9nyH/ezvatzvafAeoVm+Dc8q68fkIQSRQAAAABJRU5ErkJggg=="/>
+            <img id="eye-tutup" class="w-4 h-4 z-50 absolute right-3 translate-y-1/2 top-12" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAAAXNSR0IArs4c6QAAAz1JREFUSEvFl1noTVEUxn9/U+Y5FImEkjyYZx68GELJlOlRKXMSRVJKMkfK8GLM9EBmKYrw4Mk8z1OGMme2vlrn3/mfu8/5X+m6u27de87a+9vfWuv79r4lFGmUFAmXEHBt4H2hN5QEbg5cAGYCuwsJHgeuCFwD2gC/gDHA3kKBJxmPA7YCFYAfwDDgSCHAQzUeCewClIHvwFDgGFATGA30BFr65r4Ar4E3wC1gh5XpXT4bTetqMd0HVAK+er1HAVXLWVQb1bwlwNWs2Cw5iemBlMliKobaSNtAzG9gi6ljFvAhtEYacD3gkKc1Pu+JpXWqb0iLa0h+A4EVQNMEyHlgAPA5CR4CrgGcNuDOHqzm6g9UB34CM4C+/hHj61bvxcAZYDMwNgGi/hjsSil9FQJWjUZ4xEZgMtAbOO7gocw9Bzo4syvefPG4VZ72VODZ1r3LYzNeOugdZyjwUIOt8xJoai9L79nA7gYBR6Pnccaqq2qolH50+ShOz/oB93wTSp3KER93rfvnOdNl3nitEzEPTG56Jn8o49VTgPUeLOm0s++L/PdjoA/wMANcodJwXWu2i2Y8XQOsJwLbksDTgDUeLAfbCcx3TerxfU+3MtDDOv5ELCsRxiugkfXIZdNz+wCwyG1IAivV0mZD8+kbQEdAep1rdV3qiyilYq5mCoFL93I+lapKAvitdX0zXzPnWJxuqVrtE3RAKOUac6z2qp3GbWf+wsHVcLX8nQxDFiq/T45StknG+q1dSvRiq7EW0GY0dFSu9O83nblS282+n/KGk1FICfLy+NCa6vbIdIIXAbnPJatFY5+p9Kn+j9w8pEkNGYe6PQI/GWMeB1VZugBP4w/TLLOFN08kiW9mh5uA7YD0uMAXkVnI1eqYMy20BpyUYCr9DzE3U4bKjKxDooGnVhLIGqp1k5QAnXIHQ+/yuex1d1npINAxmTWkAjWl/Lqym8VwS/Xhv2GcjK0PjDcDaAUoG/pUc/OXq50z09ljCvjk5RBTXSZ0sOgCsT+fGpdDLK/XYqoDR+A5d7h8Up0XSkqQzES3VeHIlORmykBQTv8CFJo7wc2nE/AsCig04wgn50/C/wLOyUTRgP8A3DSfHxICe7EAAAAASUVORK5CYII="/>
         </div>
 
         <button
           type="submit"
-          class="font-bold text-lg px-7 py-2 bg-blue-500 w-full mt-4 text-slate-50"
+          class="font-bold text-lg px-7 py-2 bg-blue-500 w-full mt-4 text-slate-50 hover:bg-blue-600 hover"
         >
           Login
         </button>
       </form>
     </div>
+
+    <script>
+
+      const eye = document.getElementById("eye");
+      const inputPassword = document.getElementById("input_password");
+      const eyeTutup = document.getElementById("eye-tutup");
+
+      eyeTutup.addEventListener("click", () => {
+        eyeTutup.style.display = "none";
+        eye.style.display = "block";
+        inputPassword.type = "text";
+      });
+
+      eye.addEventListener("click", () => {
+        eye.style.display = "none";
+        eyeTutup.style.display = "block";
+        inputPassword.type = "password";
+      });
+
+    </script>
   </body>
 </html>
